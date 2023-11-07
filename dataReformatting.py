@@ -9,7 +9,7 @@ def main():
     # Read in two needed columns of dataset
     data = pd.read_csv(original_data_path, header=None, encoding='latin-1', usecols=[0, 5], names=['label', 'text'])
     # Shuffle the rows
-    data = data.sample(frac=1)
+    data = data.sample(frac=0.8)
     # Save the new dataset
     data.to_csv(output_data_path, index=False)
 
