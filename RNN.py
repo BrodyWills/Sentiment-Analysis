@@ -3,9 +3,9 @@ from keras import layers
 import dataPreprocessing
 
 # Hyperparameters (still needs to be adjusted)
-max_features = 1000
+max_features = 3000
 max_length = 150
-epochs = 4
+epochs = 2
 
 # Preprocessing Steps:
 read_data = dataPreprocessing.load_data('data/processed_data.csv')
@@ -17,9 +17,9 @@ print('Preprocessing complete.')
 # create empty model
 model = Sequential()
 # add embedding layer
-model.add(layers.Embedding(max_features, 100, input_length=max_length))
+model.add(layers.Embedding(max_features, 150, input_length=max_length))
 # add LSTM layer
-model.add(layers.LSTM(100))
+model.add(layers.LSTM(150))
 # add dense layer
 model.add(layers.Dense(1, activation='sigmoid'))
 
