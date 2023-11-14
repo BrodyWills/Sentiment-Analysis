@@ -2,8 +2,8 @@ from keras.models import Sequential
 from keras import layers
 import dataPreprocessing
 
-# Hyperparameters (still needs to be adjusted)
-max_features = 3000
+# Hyperparameters
+max_features = 1500
 max_length = 150
 epochs = 2
 
@@ -19,7 +19,7 @@ model = Sequential()
 # add embedding layer
 model.add(layers.Embedding(max_features, 150, input_length=max_length))
 # add LSTM layer
-model.add(layers.LSTM(150))
+model.add(layers.LSTM(150, dropout=0.2, recurrent_dropout=0.2))
 # add dense layer
 model.add(layers.Dense(1, activation='sigmoid'))
 
