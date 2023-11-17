@@ -1,11 +1,15 @@
+import time
 from keras.models import Sequential
 from keras import layers
+from sklearn.metrics import f1_score
 import dataPreprocessing
 
 # Hyperparameters
 max_features = 1500
 max_length = 150
 epochs = 2
+
+start_time = time.time()
 
 # Preprocessing Steps:
 read_data = dataPreprocessing.load_data('data/processed_data.csv')
@@ -33,5 +37,17 @@ print("Model Trained")
 
 # evaluate model
 loss, accuracy = model.evaluate(x_test, y_test)
-print('Accuracy: %f' % (accuracy*100))
-print('Loss: %f' % (loss*100))
+
+# evaluate model
+y_pred = model.predict(x_test)
+y_pred_binary = (y_pred > 0.5).astype(int)
+
+# Calculate F1 score
+f1 = f1_score(y_test, y_pred_binary)
+
+end_time = time.time()
+
+print('Accuracy: %f' % (accuracy * 100))
+print('Loss: %f' % (loss * 100))
+print('F1 Score: %f' % (f1 * 100))
+print('Time taken: %f seconds' % (end_time - start_time))

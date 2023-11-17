@@ -3,7 +3,9 @@ import pandas as pd
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import nltk
+from nltk import WordNetLemmatizer
 nltk.download('stopwords')
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from sklearn.model_selection import train_test_split
 
@@ -22,6 +24,9 @@ def clean_data(data):
     # remove stop words
     stop = stopwords.words('english')
     data['text'] = data['text'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop)]))
+    # lemmatize words
+    lemmatizer = WordNetLemmatizer()
+    data['text'] = data['text'].apply(lambda x: ' '.join([lemmatizer.lemmatize(word) for word in x.split()]))
 
 
 def tokenize(x_train, x_test, max_features, max_length):
