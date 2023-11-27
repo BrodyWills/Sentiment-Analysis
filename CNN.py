@@ -6,8 +6,8 @@ import dataPreprocessing
 
 # Hyperparameters
 max_features = 1500
-max_length = 150
-epochs = 2
+max_length = 200
+epochs = 3
 
 start_time = time.time()
 
@@ -23,7 +23,7 @@ model = Sequential()
 # add embedding layer
 model.add(layers.Embedding(max_features, 150, input_length=max_length))
 # add 1D Convolutional layers
-model.add(layers.Conv1D(128, 5, activation='relu'))
+model.add(layers.Conv1D(128, 5, activation='elu'))
 model.add(layers.GlobalMaxPooling1D())
 # add dense layer
 model.add(layers.Dense(1, activation='sigmoid'))
