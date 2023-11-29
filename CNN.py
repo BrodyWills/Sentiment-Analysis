@@ -6,7 +6,7 @@ import dataPreprocessing
 
 # Hyperparameters
 max_features = 1500
-max_length = 200
+max_length = 150
 epochs = 3
 
 start_time = time.time()
