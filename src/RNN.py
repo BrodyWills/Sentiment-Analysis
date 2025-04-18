@@ -7,12 +7,12 @@ import dataPreprocessing
 # Hyperparameters
 max_features = 1500
 max_length = 150
-epochs = 3
+epochs = 2
 
 start_time = time.time()
 
 # Preprocessing Steps:
-read_data = dataPreprocessing.load_data('data/processed_data.csv')
+read_data = dataPreprocessing.load_data('../data/processed_data.csv')
 dataPreprocessing.clean_data(read_data)
 x_train, x_test, y_train, y_test = dataPreprocessing.split(read_data)
 x_train, x_test = dataPreprocessing.tokenize(x_train, x_test, max_features, max_length)
@@ -22,9 +22,8 @@ print('Preprocessing complete.')
 model = Sequential()
 # add embedding layer
 model.add(layers.Embedding(max_features, 150, input_length=max_length))
-# add 1D Convolutional layers
-model.add(layers.Conv1D(128, 5, activation='elu'))
-model.add(layers.GlobalMaxPooling1D())
+# add LSTM layer
+model.add(layers.LSTM(150, dropout=0.2, recurrent_dropout=0.2))
 # add dense layer
 model.add(layers.Dense(1, activation='sigmoid'))
 

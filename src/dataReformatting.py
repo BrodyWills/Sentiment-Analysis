@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Reformat the original dataset to a new dataset containing only the columns needed
-original_data_path = 'data/Tweets.csv'
-output_data_path = 'data/processed_data.csv'
+original_data_path = '../data/Tweets.csv'
+output_data_path = '../data/processed_data.csv'
 
 
 def main():
